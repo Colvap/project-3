@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<style>
+		#methodology{
+			color: white;
+			font-size: 12px;
+		}
+		p{
+			font-family:Georgia;
+			opacity: 1
+		}
+		body{
+			background-color: #231F20;
+		}
+		#scrolly {
+			position: relative;
+			padding: 1rem;
+		}
+		
+		.scrolly-overlay {
+			position: relative;
+			padding: 0;
+			max-width: 35rem;
+			margin: 0 auto;
+		}
+		
+		.sticky-thing {
+			position: -webkit-sticky;
+			position: sticky;
+			left: 15%;
+			width: 70%;
+			margin: 0;
+			z-index: 0;
+			top: 15%;
+			height: 70vh;
+			/* Center everything inside */
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			justify-content: center;
+		}
+
+		.step {
+			margin: 0 auto 2rem auto;
+			margin-bottom: 25rem;
+			background-color: #eee;
+			background-color: #fff;
+			opacity: 0.8;
+			color: black;
+		}
+		
+		.step p {
+			text-align: center;
+			padding: 1rem;
+			font-size: 1.25rem;
+		}
+		
+		.hidden { visibility: hidden; }
+		
+		/* When it's less than 700 pixels wide, do normal scrollytelling */
+		@media only screen and (min-width: 700px) {
+			#scrolly.side-by-side {
+				display: flex;
+			}
+			
+			#scrolly.side-by-side > div {
+				flex-basis: 0;
+				flex-grow: 1;
+				flex-shrink: 1;
+				padding: 0.75em;
+			}
+			
+			#scrolly.side-by-side .scrolly-overlay {
+				margin-top: 70vh;
+				order: 0;
+				/* Change these to adjust sizing options */
+				min-width: 15rem;
+				max-width: 20rem;
+			}
+			
+			#scrolly.side-by-side .sticky-thing {
+				order: 1;
+				flex-grow: 2;
+			}
+		}
+	</style>
+	<script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.0.4/scrollama.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.3.0/d3.min.js"></script>
+
+<!-- ai2html style -->
+	<style media="screen,print">
+		#g-Taiwan-Allies-box ,
+		#g-Taiwan-Allies-box .g-artboard {
+			margin:0 auto;
+		}
+		#g-Taiwan-Allies-box p {
+			margin:0;
+		}
+		#g-Taiwan-Allies-box .g-aiAbs {
+			position:absolute;
+		}
+		#g-Taiwan-Allies-box .g-aiImg {
+			position:absolute;
+			top:0;
+			display:block;
+			width:100% !important;
+		}
+		#g-Taiwan-Allies-box .g-aiSymbol {
+			position: absolute;
+			box-sizing: border-box;
+		}
+		#g-Taiwan-Allies-box .g-aiPointText p { white-space: nowrap; }
+		#g-Taiwan-Allies-Artboard_1 {
+			position:relative;
+			overflow:hidden;
+		}
+		#g-Taiwan-Allies-Artboard_1 p {
+			font-family:georgia,'times new roman',times,serif;
+			line-height:14px;
+			opacity:1;
+			letter-spacing:0em;
+			font-size:12px;
+			text-align:left;
+			color:rgb(255,255,255);
+			text-transform:none;
+			padding-bottom:0;
+			padding-top:0;
+			mix-blend-mode:normal;
+			font-style:normal;
+			height:auto;
+			position:static;
+		}
+		#g-Taiwan-Allies-Artboard_1 .g-pstyle00 {
+			line-height:18px;
+			height:18px;
+			font-size:15px;
+		}
+		#g-Taiwan-Allies-Artboard_1 .g-pstyle01 {
+			font-weight:bold;
+		}
+		#g-Taiwan-Allies-Artboard_1 .g-pstyle02 {
+			line-height:20px;
+			height:20px;
+			font-size:17px;
+		}
+		#g-Taiwan-Allies-Artboard_1 .g-pstyle03 {
+			line-height:19px;
+			height:19px;
+			font-size:16px;
+			text-align:center;
+		}
+		#g-Taiwan-Allies-Artboard_1 .g-pstyle04 {
+			line-height:16px;
+			height:16px;
+			font-size:13px;
+		}
+		
+	</style>
+<!-- ai file: Taiwan1.ai -->
+<style media="screen,print">
+	#g-Taiwan1-box ,
+	#g-Taiwan1-box .g-artboard {
+		margin:0 auto;
+	}
+	#g-Taiwan1-box p {
+		margin:0;
+	}
+	#g-Taiwan1-box .g-aiAbs {
+		position:absolute;
+	}
+	#g-Taiwan1-box .g-aiImg {
+		position:absolute;
+		top:0;
+		display:block;
+		width:100% !important;
+	}
+	#g-Taiwan1-box .g-aiSymbol {
+		position: absolute;
+		box-sizing: border-box;
+	}
+	#g-Taiwan1-box .g-aiPointText p { white-space: nowrap; }
+	#g-Taiwan1-Artboard_1 {
+		position:relative;
+		overflow:hidden;
+	}
+	#g-Taiwan1-Artboard_1 p {
+		font-weight:500;
+		line-height:12px;
+		opacity:1;
+		letter-spacing:0em;
+		font-size:8px;
+		text-align:left;
+		color:rgb(255,255,255);
+		text-transform:none;
+		padding-bottom:0;
+		padding-top:0;
+		mix-blend-mode:normal;
+		font-style:normal;
+		height:auto;
+		position:static;
+	}
+	#g-Taiwan1-Artboard_1 .g-pstyle0 {
+		font-family:georgia,'times new roman',times,serif;
+		line-height:22px;
+		font-size:18px;
+		text-align:center;
+	}
+	#g-Taiwan1-Artboard_1 .g-pstyle1 {
+		font-family:georgia,'times new roman',times,serif;
+		line-height:18px;
+		height:18px;
+		font-size:15px;
+	}
+	#g-Taiwan1-Artboard_1 .g-pstyle2 {
+		font-family:georgia,'times new roman',times,serif;
+		line-height:17px;
+		height:17px;
+		font-size:14px;
+		color:rgb(150,84,229);
+	}
+	#g-Taiwan1-Artboard_1 .g-pstyle3 {
+		font-family:georgia,'times new roman',times,serif;
+		line-height:17px;
+		height:17px;
+		font-size:14px;
+		color:rgb(67,40,231);
+	}
+	#g-Taiwan1-Artboard_1 .g-pstyle4 {
+		font-family:georgia,'times new roman',times,serif;
+		line-height:17px;
+		height:17px;
+		font-size:14px;
+		color:rgb(255,197,2);
+	}
+	#g-Taiwan1-Artboard_1 .g-pstyle5 {
+		font-family:georgia,'times new roman',times,serif;
+		line-height:17px;
+		height:17px;
+		font-size:14px;
+		color:rgb(255,136,0);
+	}
+	#g-Taiwan1-Artboard_1 .g-pstyle6 {
+		font-family:georgia,'times new roman',times,serif;
+		line-height:17px;
+		height:17px;
+		font-size:14px;
+	}
+	#g-Taiwan1-Artboard_1 .g-pstyle7 {
+		font-family:georgia,'times new roman',times,serif;
+		line-height:17px;
+		height:17px;
+		font-size:14px;
+		color:rgb(255,98,131);
+	}
+	#g-Taiwan1-Artboard_1 .g-pstyle8 {
+		font-family:georgia,'times new roman',times,serif;
+		line-height:17px;
+		height:17px;
+		font-size:14px;
+		text-align:center;
+	}
+	#g-Taiwan1-Artboard_1 .g-cstyle0 {
+		font-size:10px;
+	}
+
+</style>
+
+</style>
+	
+</head>
+<body>
+	<section id="scrolly1">
+		<div class="sticky-thing" >
+			<img src="taiwan.jpeg">
+			</div>
+			<div class="scrolly-overlay">
+				<div class="step" id="1">
+					<p>Taiwan is an island running out of allies.</p>
+				</div>
+				<div class="step" id="2">
+					<p>The People's Republic of China (PRC) has scaled up its attempts to make Taiwan's diplomatic allies switch sides.</p>
+				</div>
+				<div class="step" id="4.5" style="background-color: transparent; margin-bottom: 0;">
+					<p></p>
+				</div>
+			</div>
+	</section>
+	<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+	<section id="scrolly2">
+		<div class="sticky-thing">
+			<div class="ai2html-container">
+				
+				<!-- Generated by ai2html v0.119.1 - 2023-07-23 16:29 -->
+				<!-- ai file: Taiwan-Allies.ai -->
+				
+				<div id="g-Taiwan-Allies-box" class="ai2html">
+					
+					<!-- Artboard: Artboard_1 -->
+					<div id="g-Taiwan-Allies-Artboard_1" class="g-artboard" style="" data-aspect-ratio="1.384" data-min-width="0">
+						<div style="padding: 0 0 72.2362% 0;"></div>
+						<img id="g-Taiwan-Allies-Artboard_1-img" class="g-Taiwan-Allies-Artboard_1-img g-aiImg" alt="" src="Taiwan-Allies-Artboard_1.jpg"/>
+						<div id="g-ai0-1" class="g-fl-layout-svg-screenshot-container g-aiAbs g-aiPointText" style="top:8.757%;margin-top:-10.4px;left:1.3326%;width:121px;">
+							<p class="g-pstyle00">Taiwan's allies</p>
+						</div>
+						<div id="g-ai0-2" class="g-fl-layout-svg-screenshot-container g-aiAbs" style="top:9.2174%;left:60.2917%;width:21.608%;">
+							<p>Since Tsai Ing-Wen&rsquo;s election,</p>
+							<p>Taiwan&rsquo;s allies have </p>
+							<p class="g-pstyle01">nearly halved</p>
+							<p>&nbsp;</p>
+						</div>
+						<div id="g-ai0-3" class="g-fl-layout-svg-screenshot-container g-aiAbs g-aiPointText" style="top:17.7864%;margin-top:-11.3px;left:3.2436%;width:40px;">
+							<p class="g-pstyle02">25</p>
+						</div>
+						<div id="g-ai0-4" class="g-fl-layout-svg-screenshot-container g-aiAbs g-aiPointText" style="top:31.3516%;margin-top:-11.3px;left:3.2436%;width:42px;">
+							<p class="g-pstyle02">20</p>
+						</div>
+						<div id="g-ai0-5" class="g-fl-layout-svg-screenshot-container g-aiAbs g-aiPointText" style="top:45.0908%;margin-top:-11.3px;left:3.2436%;width:38px;">
+							<p class="g-pstyle02">15</p>
+						</div>
+						<div id="g-ai0-6" class="g-fl-layout-svg-screenshot-container g-aiAbs g-aiPointText" style="top:58.8299%;margin-top:-11.3px;left:3.2436%;width:40px;">
+							<p class="g-pstyle02">10</p>
+						</div>
+						<div id="g-ai0-7" class="g-fl-layout-svg-screenshot-container g-aiAbs g-aiPointText" style="top:72.569%;margin-top:-11.3px;left:4.2218%;width:31px;">
+							<p class="g-pstyle02">5</p>
+						</div>
+						<div id="g-ai0-8" class="g-fl-layout-svg-screenshot-container g-aiAbs g-aiPointText" style="top:86.3082%;margin-top:-11.3px;left:4.2218%;width:32px;">
+							<p class="g-pstyle02">0</p>
+						</div>
+						<div id="g-ai0-9" class="g-fl-layout-svg-screenshot-container g-aiAbs g-aiPointText" style="transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);transform-origin: 50% 54.6740916560161%;-webkit-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-webkit-transform-origin: 50% 54.6740916560161%;-ms-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-ms-transform-origin: 50% 54.6740916560161%;top:90.0343%;margin-top:-10.7px;left:74.9216%;margin-left:-30px;width:60px;">
+							<p class="g-pstyle03">2020</p>
+						</div>
+						<div id="g-ai0-10" class="g-fl-layout-svg-screenshot-container g-aiAbs g-aiPointText" style="transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);transform-origin: 50% 54.6740916560161%;-webkit-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-webkit-transform-origin: 50% 54.6740916560161%;-ms-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-ms-transform-origin: 50% 54.6740916560161%;top:90.0343%;margin-top:-10.7px;left:14.8663%;margin-left:-29.5px;width:59px;">
+							<p class="g-pstyle03">2005</p>
+						</div>
+						<div id="g-ai0-11" class="g-fl-layout-svg-screenshot-container g-aiAbs g-aiPointText" style="transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);transform-origin: 50% 54.6740916560161%;-webkit-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-webkit-transform-origin: 50% 54.6740916560161%;-ms-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-ms-transform-origin: 50% 54.6740916560161%;top:90.0343%;margin-top:-10.7px;left:34.7702%;margin-left:-28.5px;width:57px;">
+							<p class="g-pstyle03">2010</p>
+						</div>
+						<div id="g-ai0-12" class="g-fl-layout-svg-screenshot-container g-aiAbs g-aiPointText" style="transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);transform-origin: 50% 54.6740916560161%;-webkit-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-webkit-transform-origin: 50% 54.6740916560161%;-ms-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-ms-transform-origin: 50% 54.6740916560161%;top:90.2082%;margin-top:-10.7px;left:54.7329%;margin-left:-28px;width:56px;">
+							<p class="g-pstyle03">2015</p>
+						</div>
+						<div id="g-ai0-13" class="g-fl-layout-svg-screenshot-container g-aiAbs g-aiPointText" style="top:96.3431%;margin-top:-9px;left:1.1991%;width:218px;">
+							<p class="g-pstyle04">Source: Commonwealth Magazine</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="scrolly-overlay">
+			<div class = "step" id="3">
+				<p>The island's alliances have declined sharply since 2016.</p>
+			</div>
+			<div class = "step" id="3.5">
+				<p>The election of President Tsai Ing-Wen, who supports Taiwanese independence, spurred the downturn.</p>
+			</div>
+			<div class = "step" id="4" style="margin-bottom: 100vh;">
+				<p>One area of heated geopolitical competition is the Pacific, where Australia, the US and China all battle for influence over tiny
+					Pacific island nations, many with a landmass half the size of Brooklyn.</p>
+			</div>
+			<div class="step" id="4.5" style="background-color: transparent; margin-bottom: 0;">
+				<p></p>
+			</div>
+		</div>	
+	</section>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+	<section id="scrolly3">
+		<div class="sticky-thing">	
+			<div class="ai2html-container">
+				<div id="g-Taiwan1-box" class="ai2html">
+
+					<!-- Artboard: Artboard_1 -->
+					<div id="g-Taiwan1-Artboard_1" class="g-artboard" style="" data-aspect-ratio="1.39" data-min-width="0">
+				<div style="padding: 0 0 71.9221% 0;"></div>
+						<img id="g-Taiwan1-Artboard_1-img" class="g-Taiwan1-Artboard_1-img g-aiImg" alt="" src="Taiwan1-Artboard_1.jpg"/>
+				<!-- Generator: Adobe Illustrator 27.7.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+				<svg class="g-Taiwan1-Artboard_1-interactions-img g-aiImg" version="1.2" baseProfile="tiny" id="g-Taiwan1-Artboard_1-interactions-img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+					 x="0px" y="0px" viewBox="0 0 796 572.5" overflow="visible" xml:space="preserve">
+				<g>
+					
+						<ellipse id="Solomon1" data-name="Solomon1" fill="#FFC502" cx="553.084" cy="122.746" rx="4.788" ry="4.596"/>
+					
+						<ellipse id="Kiribati1" data-name="Kiribati1" fill="#FF8800" cx="613.084" cy="171.746" rx="5.155" ry="4.632"/>
+					
+						<g id="Kiribati2" data-name="Kiribati2" transform="translate(602.4859416623235,158.22351654647056)">
+						<path display="none" fill="none" stroke="#AAAAAA" d="M19.154,13.325h3.5l0,0l0,0"/>
+						<text transform="matrix(1 0 0 1 22.9169 13.3253)" display="none" fill="#FF8800" font-family="'Georgia'" font-size="14px">Kiribati</text>
+					</g>
+					<g id="lines" data-name="lines">
+						<g id="Marshall3" data-name="Marshall3">
+							<path fill="none" opacity="0.5" stroke="#4328E7" stroke-width="2.8" d="M164.969,148.121c21.194,0,42.387,0,63.581,0
+							c21.251,0,42.502,0,63.754,0c21.193,0,42.387,0,63.58,0c21.193,0,42.387-60.17,63.58-60.17c21.194,0,42.387,150.426,63.58,150.426
+							c21.252,0,42.503,0,63.755,0c21.193,0,42.387-60.17,63.58-120.341"/>
+						</g>
+						<g id="Nauru3" data-name="Nauru3">
+							<path fill="none" opacity="0.5" stroke="#9654E5" stroke-width="2.8" d="M37.809,199.266c21.193,0,42.387,0,63.58,0
+							c21.194,0,42.387-27.076,63.58-27.076c21.194,0,42.387,18.051,63.581,18.051c21.251,0,42.502,0,63.754,0
+							c21.193,0,42.387-24.069,63.58-24.069c21.193,0,42.387,42.12,63.58,42.12c21.194,0,42.387-90.256,63.58-90.256
+							c21.252,0,42.503,42.119,63.755,42.119c21.193,0,42.387-50.643,63.58-66.187s42.387-21.31,63.58-27.076"/>
+						</g>
+						<g id="Tuvalu3" data-name="Tuvalu3">
+							<path fill="none" opacity="0.5" stroke="#FF6283" stroke-width="2.8" d="M37.809,316.598c21.193,15.293,42.387,30.587,63.58,45.128
+							c21.194,14.541,42.387,42.119,63.58,42.119c21.194,0,42.387-123.349,63.581-123.349c21.251,0,42.502,3.009,63.754,3.009
+							c21.193,0,42.387-15.043,63.58-15.043c21.193,0,42.387,27.077,63.58,27.077c21.194,0,42.387-21.06,63.58-21.06
+							c21.252,0,42.503,1.501,63.755,3.008c21.193,1.504,42.387,3.761,63.58,6.018"/>
+						</g>
+						<g>
+							<path fill="none" stroke="#FF8800" stroke-width="2.8" d="M610.476,171.938"/>
+						</g>
+						<g>
+							<path fill="none" stroke="#FFC502" stroke-width="2.8" d="M546.896,126.81"/>
+						</g>
+						<g transform="translate(602.4859416623235,104.07027186656347)" display="none">
+							<path display="inline" fill="none" stroke="#AAAAAA" d="M13.49,13.714h1.75V8.427h1.75"/>
+							
+								<text transform="matrix(1 0 0 1 20.4899 13.0473)" display="inline" fill="none" stroke="#FFFFFF" stroke-width="3.5" font-family="'Arial-BoldMT'" font-size="14px">marshall</text>
+							
+								<text transform="matrix(1 0 0 1 20.4899 13.0473)" display="inline" fill="#4328E7" font-family="'Arial-BoldMT'" font-size="14px">marshall</text>
+						</g>
+						<g transform="translate(666.0661163330078,52.92554077998453)" display="none">
+							<path display="inline" fill="none" stroke="#AAAAAA" d="M13.49,13.714h3.5l0,0l0,0"/>
+							
+								<text transform="matrix(1 0 0 1 20.4899 18.3346)" display="inline" fill="none" stroke="#FFFFFF" stroke-width="3.5" font-family="'Arial-BoldMT'" font-size="14px">nauru</text>
+							
+								<text transform="matrix(1 0 0 1 20.4899 18.3346)" display="inline" fill="#9654E5" font-family="'Arial-BoldMT'" font-size="14px">nauru</text>
+						</g>
+						<g transform="translate(602.4859416623235,269.5385194996129)" display="none">
+							<path display="inline" fill="none" stroke="#AAAAAA" d="M13.49,13.714h3.5l0,0l0,0"/>
+							
+								<text transform="matrix(1 0 0 1 20.4899 18.3345)" display="inline" fill="none" stroke="#FFFFFF" stroke-width="3.5" font-family="'Arial-BoldMT'" font-size="14px">tuvalu</text>
+							
+								<text transform="matrix(1 0 0 1 20.4899 18.3345)" display="inline" fill="#FF6283" font-family="'Arial-BoldMT'" font-size="14px">tuvalu</text>
+						</g>
+						<g transform="translate(602.4859416623235,158.22351654647056)">
+							<path display="none" fill="none" stroke="#AAAAAA" d="M13.49,13.714h3.5l0,0l0,0"/>
+						</g>
+						
+							<g id="Solomon2" data-name="Solomon2" transform="translate(538.9057669916393,113.095812646548)">
+							<path display="none" fill="none" stroke="#AAAAAA" d="M13.49,13.714h1.75v5.287h1.75"/>
+							<text transform="matrix(1 0 0 1 19.0486 24.2446)" display="none" fill="#FFC502" font-family="'Georgia'" font-size="14px">Solomon Islands</text>
+						</g>
+					</g>
+					<g id="Nauru1" data-name="Nauru1" transform="translate(666.0661163330078,52.92554077998453)">
+						<path display="none" fill="none" stroke="#AAAAAA" d="M13.393,13.966h3.5l0,0l0,0"/>
+						
+							<!-- <text transform="matrix(1 0 0 1 20.3932 18.5862)" fill="none" stroke="#FFFFFF" stroke-width="3.5" font-family="'Arial-BoldMT'" font-size="14px">nauru</text> -->
+						<text transform="matrix(1 0 0 1 20.3932 18.5862)" display="none" fill="#9654E5" font-family="'Georgia'" font-size="14px">Nauru</text>
+					</g>
+					<g id="Tuvalu1" data-name="Tuvalu1" transform="translate(602.4859416623235,269.5385194996129)">
+						<path display="none" fill="none" stroke="#AAAAAA" d="M13.393,13.966h3.5l0,0l0,0"/>
+						<text transform="matrix(1 0 0 1 16.3932 20.5861)" display="none" fill="#FF6283" font-family="'Georgia'" font-size="14px">Tuvalu</text>
+					</g>
+					<g id="Tuvalu2" data-name="Tuvalu2">
+						<path fill="none" stroke="#FF6283" stroke-width="2.8" d="M37.809,316.598c21.193,15.293,42.387,30.587,63.58,45.128
+							c21.194,14.541,42.387,42.119,63.58,42.119c21.194,0,42.387-123.349,63.581-123.349c21.251,0,42.502,3.009,63.754,3.009
+							c21.193,0,42.387-15.043,63.58-15.043c21.193,0,42.387,27.077,63.58,27.077c21.194,0,42.387-21.06,63.58-21.06
+							c21.252,0,42.503,1.501,63.755,3.008c21.193,1.504,42.387,3.761,63.58,6.018"/>
+					</g>
+				</g>
+	
+				<line id="Palau1_00000156585131253160956170000002645305639901425850_" fill="#9EDF00" stroke="#57DF00" stroke-width="1.5" x1="28.858" y1="178.436" x2="672" y2="178.436"/>
+
+					<g id="Nauru2" data-name="Nauru2">
+						<path fill="none" stroke="#9654E5" stroke-width="2.8" d="M37.809,199.266c21.193,0,42.387,0,63.58,0
+							c21.194,0,42.387-27.076,63.58-27.076c21.194,0,42.387,18.051,63.581,18.051c21.251,0,42.502,0,63.754,0
+							c21.193,0,42.387-24.069,63.58-24.069c21.193,0,42.387,42.12,63.58,42.12c21.194,0,42.387-90.256,63.58-90.256
+							c21.252,0,42.503,42.119,63.755,42.119c21.193,0,42.387-50.643,63.58-66.187s42.387-21.31,63.58-27.076"/>
+					</g>
+					<g id="Marshall2" data-name="Marshall2">
+						<path fill="none" stroke="#4328E7" stroke-width="2.8" d="M164.969,148.121c21.194,0,42.387,0,63.581,0
+							c21.251,0,42.502,0,63.754,0c21.193,0,42.387,0,63.58,0c21.193,0,42.387-60.17,63.58-60.17c21.194,0,42.387,150.426,63.58,150.426
+							c21.252,0,42.503,0,63.755,0c21.193,0,42.387-60.17,63.58-120.341"/>
+					</g>
+					
+						<g id="Marshall1" data-name="Marshall1" transform="translate(602.4859416623235,104.07027186656347)">
+						<path display="none" fill="none" stroke="#AAAAAA" d="M13.393,13.966h1.75V8.679h1.75"/>
+						
+							<!-- <text transform="matrix(1 0 0 1 20.3932 13.2989)" fill="none" stroke="#FFFFFF" stroke-width="3.5" font-family="'Arial-BoldMT'" font-size="14px">marshall</text> -->
+						<text transform="matrix(1 0 0 1 20.3932 13.2989)" display="none" fill="#4328E7" font-family="'Georgia'" font-size="14px">Marshall Islands</text>
+					</g>
+				
+				<style>
+				#g-Taiwan1-Artboard_1-interactions-img rect, #g-Taiwan1-Artboard_1-interactions-img circle, #g-Taiwan1-Artboard_1-interactions-img path, #g-Taiwan1-Artboard_1-interactions-img line, #g-Taiwan1-Artboard_1-interactions-img polyline, #g-Taiwan1-Artboard_1-interactions-img polygon { vector-effect: non-scaling-stroke; }
+				</style>
+				</svg>
+				
+						<div id="g-ai0-1" class="g-Layer_1 g-aiAbs" style="top:2.0961%;left:53.5117%;margin-left:-21.9221%;width:43.8442%;">
+							<p class="g-pstyle0">Taiwanese Financial Aid, By Year</p>
+						</div>
+						<div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.1751%;margin-top:-10.4px;left:1.4395%;width:127px;">
+							<p class="g-pstyle1">$USD (million)</p>
+						</div>
+						<div id="g-ai0-3" class="g-interactions g-aiAbs g-aiPointText" style="top:11.7987%;margin-top:-9.5px;left:86.2386%;width:62px;">
+							<p class="g-pstyle2">Nauru</p>
+						</div>
+						<div id="g-ai0-4" class="g-interactions g-aiAbs g-aiPointText" style="top:19.8336%;margin-top:-9.5px;left:78.2511%;width:125px;">
+							<p class="g-pstyle3">Marshall Islands</p>
+						</div>
+						<div id="g-ai0-5" class="g-interactions g-aiAbs g-aiPointText" style="top:23.3271%;margin-top:-9.5px;left:70.0947%;width:125px;">
+							<p class="g-pstyle4">Solomon Islands</p>
+						</div>
+						<div id="g-ai0-6" class="g-interactions g-aiAbs g-aiPointText" style="top:29.2659%;margin-top:-9.5px;left:78.5682%;width:69px;">
+							<p class="g-pstyle5">Kiribati</p>
+						</div>
+						<div id="g-ai0-7" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:31.362%;margin-top:-9.5px;left:1.2496%;width:37px;">
+							<p class="g-pstyle6">10</p>
+						</div>
+						<div id="g-ai0-8" class="g-interactions g-aiAbs g-aiPointText" style="top:50.0519%;margin-top:-9.5px;left:77.7486%;width:65px;">
+							<p class="g-pstyle7">Tuvalu</p>
+						</div>
+						<div id="g-ai0-9" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:57.5629%;margin-top:-9.5px;left:2.2278%;width:29px;">
+							<p class="g-pstyle6">5</p>
+						</div>
+						<div id="g-ai0-10" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:83.9384%;margin-top:-9.5px;left:2.2278%;width:31px;">
+							<p class="g-pstyle6">0</p>
+						</div>
+						<div id="g-ai0-11" class="g-Layer_1 g-aiAbs g-aiPointText" style="transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);transform-origin: 50% 55.2370480233212%;-webkit-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-webkit-transform-origin: 50% 55.2370480233212%;-ms-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-ms-transform-origin: 50% 55.2370480233212%;top:87.9559%;margin-top:-9.5px;left:59.651%;margin-left:-27.5px;width:55px;">
+							<p class="g-pstyle8">2020</p>
+						</div>
+						<div id="g-ai0-12" class="g-Layer_1 g-aiAbs g-aiPointText" style="transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);transform-origin: 50% 55.2370480233212%;-webkit-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-webkit-transform-origin: 50% 55.2370480233212%;-ms-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-ms-transform-origin: 50% 55.2370480233212%;top:88.1305%;margin-top:-9.5px;left:75.5992%;margin-left:-27px;width:54px;">
+							<p class="g-pstyle8">2022</p>
+						</div>
+						<div id="g-ai0-13" class="g-Layer_1 g-aiAbs g-aiPointText" style="transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);transform-origin: 50% 55.2370480233212%;-webkit-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-webkit-transform-origin: 50% 55.2370480233212%;-ms-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-ms-transform-origin: 50% 55.2370480233212%;top:88.1305%;margin-top:-9.5px;left:83.5884%;margin-left:-27px;width:54px;">
+							<p class="g-pstyle8">2023</p>
+						</div>
+						<div id="g-ai0-14" class="g-Layer_1 g-aiAbs g-aiPointText" style="transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);transform-origin: 50% 55.2370480233212%;-webkit-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-webkit-transform-origin: 50% 55.2370480233212%;-ms-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-ms-transform-origin: 50% 55.2370480233212%;top:88.1305%;margin-top:-9.5px;left:43.5882%;margin-left:-26.5px;width:53px;">
+							<p class="g-pstyle8">2018</p>
+						</div>
+						<div id="g-ai0-15" class="g-Layer_1 g-aiAbs g-aiPointText" style="transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);transform-origin: 50% 55.2370480233212%;-webkit-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-webkit-transform-origin: 50% 55.2370480233212%;-ms-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-ms-transform-origin: 50% 55.2370480233212%;top:88.1305%;margin-top:-9.5px;left:27.5364%;margin-left:-26px;width:52px;">
+							<p class="g-pstyle8">2016</p>
+						</div>
+						<div id="g-ai0-16" class="g-Layer_1 g-aiAbs g-aiPointText" style="transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);transform-origin: 50% 55.2370480233212%;-webkit-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-webkit-transform-origin: 50% 55.2370480233212%;-ms-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-ms-transform-origin: 50% 55.2370480233212%;top:88.1305%;margin-top:-9.5px;left:51.5206%;margin-left:-26px;width:52px;">
+							<p class="g-pstyle8">2019</p>
+						</div>
+						<div id="g-ai0-17" class="g-Layer_1 g-aiAbs g-aiPointText" style="transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);transform-origin: 50% 55.2370480233212%;-webkit-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-webkit-transform-origin: 50% 55.2370480233212%;-ms-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-ms-transform-origin: 50% 55.2370480233212%;top:88.1305%;margin-top:-9.5px;left:11.5617%;margin-left:-26px;width:52px;">
+							<p class="g-pstyle8">2014</p>
+						</div>
+						<div id="g-ai0-18" class="g-Layer_1 g-aiAbs g-aiPointText" style="transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);transform-origin: 50% 55.2370480233212%;-webkit-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-webkit-transform-origin: 50% 55.2370480233212%;-ms-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-ms-transform-origin: 50% 55.2370480233212%;top:88.1305%;margin-top:-9.5px;left:67.5194%;margin-left:-26px;width:52px;">
+							<p class="g-pstyle8">2021</p>
+						</div>
+						<div id="g-ai0-19" class="g-Layer_1 g-aiAbs g-aiPointText" style="transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);transform-origin: 50% 55.2370480233212%;-webkit-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-webkit-transform-origin: 50% 55.2370480233212%;-ms-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-ms-transform-origin: 50% 55.2370480233212%;top:88.1305%;margin-top:-9.5px;left:3.5776%;margin-left:-26px;width:52px;">
+							<p class="g-pstyle8">2013</p>
+						</div>
+						<div id="g-ai0-20" class="g-Layer_1 g-aiAbs g-aiPointText" style="transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);transform-origin: 50% 55.2370480233212%;-webkit-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-webkit-transform-origin: 50% 55.2370480233212%;-ms-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-ms-transform-origin: 50% 55.2370480233212%;top:88.3052%;margin-top:-9.5px;left:19.5586%;margin-left:-26px;width:52px;">
+							<p class="g-pstyle8">2015</p>
+						</div>
+						<div id="g-ai0-21" class="g-Layer_1 g-aiAbs g-aiPointText" style="transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);transform-origin: 50% 55.2370480233212%;-webkit-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-webkit-transform-origin: 50% 55.2370480233212%;-ms-transform: matrix(0.7071,-0.7071,0.7071,0.7071,0,0);-ms-transform-origin: 50% 55.2370480233212%;top:88.3052%;margin-top:-9.5px;left:35.4993%;margin-left:-25.5px;width:51px;">
+							<p class="g-pstyle8">2017</p>
+						</div>
+						<div id="g-ai0-22" class="g-Layer_1 g-aiAbs" style="top:92.2271%;left:4.1425%;width:70.8543%;">
+							<p><span class="g-cstyle0">Source:</span> Government of Kiribati, Ministry of Finance and Economic Development; Government of the Marshall Islands, Ministry of Foreign Affairs and Trade; Government of Nauru, Department of FinanceGovernment of the Solomon Islands, Government Services; Government of Tuvalu, Ministry of Finance</p>
+						</div>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+	<!-- </section> -->
+		<div class="scrolly-overlay">
+				<!-- <div class = "step" id="3">
+					<p>The island has seen a sharp decline in allies since 2016.</p>
+				</div>
+				<div class = "step" id="4">
+					<p>One area of heated geopolitical competition is the Pacific, where Australia, the US and China all battle for influence over a series of tiny
+						Pacific island nations, with populations in the mere tens of thousands, in lands half the size of Brooklyn.</p>
+					</div> -->
+				<div class = "step" id="five">
+					<p>Here are the Pacific island nations that still back Taiwan. Each line is based on grants disclosed by each nation in their annual budgets.</p> 
+				</div>
+				<div class = "step" id="seven">
+					<p>Palau should be on here too (in green), but their records are taking a bit more time to sort through. Although <a href="https://www.theguardian.com/global-development/2018/sep/08/palau-against-china-the-tiny-island-defying-the-worlds-biggest-country">The Guardian</a> reported in 2018 (with no attribution) that they're sent $10 million a year. </p>
+				</div>
+						<div class = "step" id="8">
+							<p>The money they get is similar to the grants the PRC gives to neighboring Kiribati and the Solomon Islands, who both switched sides
+								in 2019.</p>
+							</div>
+							<div class = "step" id="eight">
+								<p>The only numbers published in their financial records are an $11.7 million grant to the Solomon Islands in 2021...</p>
+							</div>
+							<div class = "step" id="nine">
+								<p>...and a $10.2 million one to Kiribati in 2022.</p> 
+							</div>
+							<div class = "step" id="10">
+								<p>The PRC rarely offers grants, preferring loans that can be paid back. Despite being the world's second-largest economy, the grants it 
+									is willing to give are no bigger than tiny Taiwan's.</p>
+								</div>
+							<div class="step" id="4.5" style="background-color: transparent; margin-bottom: 0;">
+								<p></p>
+							</div>
+							<div class="step" id="4.5" style="background-color: transparent; margin-bottom: 0;">
+								<p></p>
+							</div>
+							</div>
+							<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+						</section>
+						<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+						<section id="outro"></section>
+						<div id="methodology">
+						<p>Methodology:</p>
+						<p>Grants: Grants have been defined in this investigation as any money either donated by Taiwan to a diplomatic ally, or else used to fund 
+							a local development project free of charge.
+						</p>
+						<p>Exchange Rate: All figures from Tuvalu and Kiribati were converted from AUD to USD using <a href="https://www.x-rates.com/historical/?from=USD&amount=1&date=2023-07-21">x-rates.com</a>, on January 1st of each year.
+							Reports from Nauru provided their own exchange rates which were followed accordingly.</p>
+							<p>Forecasts: The only figures available for Tuvalu for 2017-2018, and 2021-2022, were forecasts from 2016 and 2020 respectively, and may not represent the actual sum given that year.</p>
+						</div>
+						</main>
+						<script src="https://unpkg.com/d3@5.9.1/dist/d3.min.js"></script>
+						<script src="scrollama.min.js"></script>
+						<!-- The above two links have been kept in. Lose if need be. -->
+					<script>
+						d3.select(".g-pstyle4").classed('hidden', true)
+						d3.select(".g-pstyle5").classed('hidden', true)
+						d3.select(".g-pstyle3").classed('hidden', false)
+						d3.select("#Marshall2").classed('hidden', false)
+						d3.select("#Marshall3").classed('hidden', false)
+						d3.select(".g-pstyle2").classed('hidden', false)
+						d3.select("#Nauru2").classed('hidden', false)
+						d3.select("#Nauru3").classed('hidden', false)
+						d3.select(".g-pstyle7").classed('hidden', false)
+						d3.select("#Tuvalu2").classed('hidden', false)
+						d3.select("#Tuvalu3").classed('hidden', false)
+						d3.select("#Solomon1").classed('hidden', true)
+						d3.select("#Kiribati1").classed('hidden', true)
+						d3.select("#Palau1_00000156585131253160956170000002645305639901425850_").classed('hidden', true)
+
+						d3.select("#five").on('stepin', function(e) {
+							console.log('At step seven')
+						d3.select(".g-pstyle4").classed('hidden', true)
+						d3.select(".g-pstyle5").classed('hidden', true)
+						d3.select(".g-pstyle3").classed('hidden', false)
+						d3.select("#Marshall2").classed('hidden', false)
+						d3.select("#Marshall3").classed('hidden', false)
+						d3.select(".g-pstyle2").classed('hidden', false)
+						d3.select("#Nauru2").classed('hidden', false)
+						d3.select("#Nauru3").classed('hidden', false)
+						d3.select(".g-pstyle7").classed('hidden', false)
+						d3.select("#Tuvalu2").classed('hidden', false)
+						d3.select("#Tuvalu3").classed('hidden', false)
+						d3.select("#Solomon1").classed('hidden', true)
+						d3.select("#Kiribati1").classed('hidden', true)
+						d3.select("#Palau1_00000156585131253160956170000002645305639901425850_").classed('hidden', true)
+					}
+					)
+
+						d3.select("#seven").on('stepin', function(e) {
+							console.log('At step seven')
+						d3.select(".g-pstyle4").classed('hidden', true)
+						d3.select(".g-pstyle5").classed('hidden', true)
+						d3.select(".g-pstyle3").classed('hidden', true)
+						d3.select("#Marshall2").classed('hidden', true)
+						d3.select("#Marshall3").classed('hidden', false)
+						d3.select(".g-pstyle2").classed('hidden', true)
+						d3.select("#Nauru2").classed('hidden', true)
+						d3.select("#Nauru3").classed('hidden', false)
+						d3.select(".g-pstyle7").classed('hidden', true)
+						d3.select("#Tuvalu2").classed('hidden', true)
+						d3.select("#Tuvalu3").classed('hidden', false)
+						d3.select("#Solomon1").classed('hidden', true)
+						d3.select("#Kiribati1").classed('hidden', true)
+						d3.select("#Palau1_00000156585131253160956170000002645305639901425850_").classed('hidden', false)
+					}
+					)
+
+						d3.select("#eight").on('stepin', function(e) {
+							console.log('At step eight')
+							d3.select(".g-pstyle4").classed('hidden', false)
+							d3.select(".g-pstyle5").classed('hidden', true)
+							d3.select(".g-pstyle3").classed('hidden', true)
+						d3.select("#Marshall2").classed('hidden', true)
+						d3.select("#Marshall3").classed('hidden', false)
+						d3.select(".g-pstyle2").classed('hidden', true)
+						d3.select("#Nauru2").classed('hidden', true)
+						d3.select("#Nauru3").classed('hidden', false)
+						d3.select(".g-pstyle7").classed('hidden', true)
+						d3.select("#Tuvalu2").classed('hidden', true)
+						d3.select("#Tuvalu3").classed('hidden', false)
+						d3.select("#Solomon1").classed('hidden', false)
+						d3.select("#Kiribati1").classed('hidden', true)
+						d3.select("#Palau1_00000156585131253160956170000002645305639901425850_").classed('hidden', true)
+						}
+						)
+
+						d3.select("#nine").on('stepin', function(e) {
+							console.log('At step nine')
+							d3.select(".g-pstyle4").classed('hidden', false)
+							d3.select(".g-pstyle5").classed('hidden', false)
+							d3.select(".g-pstyle3").classed('hidden', true)
+						d3.select("#Marshall2").classed('hidden', true)
+						d3.select("#Marshall3").classed('hidden', false)
+						d3.select(".g-pstyle2").classed('hidden', true)
+						d3.select("#Nauru2").classed('hidden', true)
+						d3.select("#Nauru3").classed('hidden', false)
+						d3.select(".g-pstyle7").classed('hidden', true)
+						d3.select("#Tuvalu2").classed('hidden', true)
+						d3.select("#Tuvalu3").classed('hidden', false)
+						d3.select("#Solomon1").classed('hidden', false)
+						d3.select("#Kiribati1").classed('hidden', false)
+						d3.select("#Palau1_00000156585131253160956170000002645305639901425850_").classed('hidden', true)
+						}
+						)
+
+						// d3.select("#3").on('stepin', function(e) {
+						// 	console.log('Got to step 3')
+						// 	d3.select('taiwan.jpeg').classed('hidden', true)
+						// 	d3.select("#g-Taiwan-Allies-Artboard_1.jpg").classed('hidden',false)
+						// 	d3.select("#g-Taiwan1-Artboard_1.jpg").classed('hidden', true)})
+
+						//  d3.select("#7").on('stepin', function(e) {
+						// 	console.log('Got to step 7')
+						// 	d3.select('taiwan.jpeg').classed('hidden', true)
+						// 	d3.select("#g-Taiwan-Allies-Artboard_1.jpg").classed('hidden',true)
+						// 	d3.select("#g-Taiwan1-Artboard_1.jpg").classed('hidden', false)
+						//  }
+						//  )
+					</script>
+						<script>
+							const scroller = scrollama();
+							
+							scroller
+							.setup({
+								step: "#scrolly .scrolly-overlay .step",
+								offset: 0.75,
+								debug: false
+							})
+							.onStepEnter(function({ element, index, direction}) {
+								const event = new CustomEvent('stepin', { detail: { direction: direction } })
+								element.dispatchEvent(event);
+							})
+							.onStepExit(function({ element, index, direction }) {
+								const event = new CustomEvent('stepout', { detail: { direction: direction } })
+								element.dispatchEvent(event);
+							});
+							
+							window.addEventListener("resize", scroller.resize);
+						</script>
+
+						<script>
+							const scroller2 = scrollama()
+
+							scroller2
+							.setup({
+								step: "#scrolly2 .scrolly-overlay .step",
+								offset: 0.8,
+								debug: false,
+							})
+							.onStepEnter(function ({ element, index, direction }) {
+								const event = new CustomEvent("stepin", { detail: { direction: direction } })
+								element.dispatchEvent(event)
+							})
+							.onStepExit(function ({ element, index, direction }) {
+								const event = new CustomEvent("stepout", { detail: { direction: direction } })
+								element.dispatchEvent(event)
+							})
+
+							window.addEventListener("resize", scroller2.resize)
+						</script>
+						
+						<script>
+							const scroller3 = scrollama()
+						
+							scroller3
+							  .setup({
+								step: "#scrolly3 .scrolly-overlay .step",
+								offset: 0.7,
+								debug: false,
+							  })
+							  .onStepEnter(function ({ element, index, direction }) {
+								const event = new CustomEvent("stepin", { detail: { direction: direction } })
+								element.dispatchEvent(event)
+							  })
+							  .onStepExit(function ({ element, index, direction }) {
+								const event = new CustomEvent("stepout", { detail: { direction: direction } })
+								element.dispatchEvent(event)
+							  })
+						
+							window.addEventListener("resize", scroller.resize)
+						</script>
+						
+						<!-- ai2html resizer script -->
+						
+						<script type="text/javascript">
+							(function() {
+								// only want one resizer on the page
+								if (document.documentElement.className.indexOf("g-resizer-v3-init") > -1) return;
+								document.documentElement.className += " g-resizer-v3-init";
+								// require IE9+
+								if (!("querySelector" in document)) return;
+								function resizer() {
+									var elements = Array.prototype.slice.call(document.querySelectorAll(".g-artboard[data-min-width]")),
+									widthById = {};
+									elements.forEach(function(el) {
+										var parent = el.parentNode,
+										width = widthById[parent.id] || parent.getBoundingClientRect().width,
+										minwidth = el.getAttribute("data-min-width"),
+										maxwidth = el.getAttribute("data-max-width");
+										widthById[parent.id] = width;
+										
+										if (+minwidth <= width && (+maxwidth >= width || maxwidth === null)) {
+											el.style.display = "block";
+										} else {
+											el.style.display = "none";
+										}
+									});
+									try {
+										if (window.parent && window.parent.$) {
+											window.parent.$("body").trigger("resizedcontent", [window]);
+										}
+										if (window.require) {
+											require(['foundation/main'], function() {
+												require(['shared/interactive/instances/app-communicator'], function(AppCommunicator) {
+													AppCommunicator.triggerResize();
+												});
+											});
+										}
+									} catch(e) { console.log(e); }
+								}
+								
+								document.addEventListener('DOMContentLoaded', resizer);
+								// feel free to replace throttle with _.throttle, if available
+								window.addEventListener('resize', _.throttle(resizer, 200));        
+								
+								function throttle(func, wait) {
+									// from underscore.js
+									var _now = Date.now || function() { return new Date().getTime(); },
+									context, args, result, timeout = null, previous = 0;
+									var later = function() {
+										previous = _now();
+										timeout = null;
+										result = func.apply(context, args);
+										if (!timeout) context = args = null;
+									};
+									return function() {
+										var now = _now(), remaining = wait - (now - previous);
+										context = this;
+										args = arguments;
+										if (remaining <= 0 || remaining > wait) {
+											if (timeout) {
+												clearTimeout(timeout);
+												timeout = null;
+											}
+											previous = now;
+											result = func.apply(context, args);
+											if (!timeout) context = args = null;
+										} else if (!timeout && options.trailing !== false) {
+											timeout = setTimeout(later, remaining);
+										}
+										return result;
+									};
+								}
+								
+								
+							})();
+						</script>
+						
+					</body>
+					</html>
+					
+					
