@@ -42,6 +42,8 @@ This was my first time using Adobe Illustrator, ai2html, and scrollama. Each too
 ## What would I have liked to have done?
 I looked at Palau's data and wept. They collate the aid given them by Taiwan in the form of the work projects funded by them, listing ongoing work projects by quarter, with no indication of when the money was first issued - sifting through 40 PDFs for this information, work code by work code, was too much for the time and resources available to me. If done properly, it would need several people.
 
-I would have loved to use MapBox or Flourish to place each island on an interactive map, to show the reader where each island is. 
+I would have loved to use MapBox or Flourish to place each island on an interactive map, to show the reader where each island is.
+
+I would have liked to do more analysis: how does aid correlate to GDP of each country? Why does Tuvalu get less than the others, Nauru more? 
 
 As I said at the start, this is one piece of a much bigger puzzle. Taiwan currently has 13 allies - I was looking at just four. 
