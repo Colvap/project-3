@@ -567,12 +567,30 @@ body.scrollytelling-body .scrollytelling-slide video {
 						font-size:17px;
 						color:#8A00FF;
 					}
+
+					#g-Taiwan1-Artboard_1 .g-pstyle30b {
+						line-height:17px;
+						height:17px;
+						font-size:17px;
+						color:#8A00FF;
+						opacity:0.4
+					}
+
 					#g-Taiwan1-Artboard_1 .g-pstyle40 {
 						line-height:17px;
 						height:17px;
 						font-size:17px;
 						color:#0043FF;
 					}
+
+					#g-Taiwan1-Artboard_1 .g-pstyle40b {
+						line-height:17px;
+						height:17px;
+						font-size:17px;
+						color:#0043FF;
+						opacity: 0.4
+					}
+
 					#g-Taiwan1-Artboard_1 .g-pstyle5 {
 						line-height:17px;
 						height:17px;
@@ -596,6 +614,15 @@ body.scrollytelling-body .scrollytelling-slide video {
 						font-size:17px;
 						color: #Fb1A8E;
 					}
+
+					#g-Taiwan1-Artboard_1 .g-pstyle80b {
+						line-height:17px;
+						height:17px;
+						font-size:17px;
+						color: #Fb1A8E;
+						opacity: 0.4
+					}
+
 				</style>
 				<div id="g-Taiwan1-box" class="ai2html">
 
@@ -733,6 +760,12 @@ body.scrollytelling-body .scrollytelling-slide video {
 						<div id="g-ai0-5" class="g-interactions g-aiAbs g-aiPointText" style="top:19.8336%;margin-top:-9.5px;left:78.2511%;width:125px;">
 							<p class="g-pstyle40">Marshall Islands</p>
 						</div>
+						<div id="g-ai0-4b" opacity="0.2" class="g-interactions g-aiAbs g-aiPointText" style="top:11.7987%;margin-top:-9.5px;left:86.2386%;width:62px;">
+							<p class="g-pstyle30b">Nauru</p>
+						</div>
+						<div id="g-ai0-5b" opacity="0.2" class="g-interactions g-aiAbs g-aiPointText" style="top:19.8336%;margin-top:-9.5px;left:78.2511%;width:125px;">
+							<p class="g-pstyle40b">Marshall Islands</p>
+						</div>
 						<div id="g-ai0-6" class="g-interactions g-aiAbs g-aiPointText" style="top:23.3271%;margin-top:-9.5px;left:70.0947%;width:125px;">
 							<p class="g-pstyle5">Solomon Islands</p>
 						</div>
@@ -747,6 +780,9 @@ body.scrollytelling-body .scrollytelling-slide video {
 						</div>
 						<div id="g-ai0-10" class="g-interactions g-aiAbs g-aiPointText" style="top:50.0519%;margin-top:-9.5px;left:77.7486%;width:65px;">
 							<p class="g-pstyle80">Tuvalu</p>
+						</div>
+						<div id="g-ai0-10b" opacity="0.2" class="g-interactions g-aiAbs g-aiPointText" style="top:50.0519%;margin-top:-9.5px;left:77.7486%;width:65px;">
+							<p class="g-pstyle80b">Tuvalu</p>
 						</div>
 						<div id="g-ai0-11" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:57.5629%;margin-top:-9.5px;left:2.2278%;width:29px;">
 							<p class="g-pstyle1">5</p>
@@ -905,6 +941,10 @@ body.scrollytelling-body .scrollytelling-slide video {
 						d3.select("#Solomon1").classed('hidden', true)
 						d3.select("#Kiribati1").classed('hidden', true)
 						d3.select("#Palau1").classed('hidden', true)
+						d3.select(".g-pstyle30b").classed('hidden', true)
+						d3.select(".g-pstyle40b").classed('hidden', true)
+						d3.select(".g-pstyle80b").classed('hidden', true)
+
 
 						d3.select("#five").on('stepin', function(e) {
 							console.log('At step five')
@@ -923,6 +963,9 @@ body.scrollytelling-body .scrollytelling-slide video {
 						d3.select("#Solomon1").classed('hidden', true)
 						d3.select("#Kiribati1").classed('hidden', true)
 						d3.select("#Palau1").classed('hidden', true)
+						d3.select(".g-pstyle30b").classed('hidden', true)
+						d3.select(".g-pstyle40b").classed('hidden', true)
+						d3.select(".g-pstyle80b").classed('hidden', true)
 					}
 					)
 
@@ -943,6 +986,9 @@ body.scrollytelling-body .scrollytelling-slide video {
 						d3.select("#Solomon1").classed('hidden', true)
 						d3.select("#Kiribati1").classed('hidden', true)
 						d3.select("#Palau1").classed('hidden', false)
+						d3.select(".g-pstyle30b").classed('hidden', false)
+						d3.select(".g-pstyle40b").classed('hidden', false)
+						d3.select(".g-pstyle80b").classed('hidden', false)
 					}
 					)
 
@@ -951,7 +997,7 @@ body.scrollytelling-body .scrollytelling-slide video {
 						d3.select(".g-pstyle6").classed('hidden', true)
 						d3.select("#Palau2").classed('hidden', true)
 						d3.select(".g-pstyle5").classed('hidden', true)
-						d3.select(".g-pstyle30").classed('hidden', true)
+						d3.select(".g-pstyle30").classed('hidden', false)
 						d3.select("#Marshall2").classed('hidden', true)
 						d3.select("#Marshall3").classed('hidden', false)
 						d3.select(".g-pstyle40").classed('hidden', true)
@@ -963,18 +1009,21 @@ body.scrollytelling-body .scrollytelling-slide video {
 						d3.select("#Solomon1").classed('hidden', true)
 						d3.select("#Kiribati1").classed('hidden', true)
 						d3.select("#Palau1").classed('hidden', true)
+						d3.select(".g-pstyle30b").classed('hidden', true)
+						d3.select(".g-pstyle40b").classed('hidden', false)
+						d3.select(".g-pstyle80b").classed('hidden', false)
 					}
 					)
 
 					d3.select("#sevenseven").on('stepin', function(e) {
-							console.log('At step sevenfive')
+							console.log('At step sevenseven')
 						d3.select(".g-pstyle6").classed('hidden', true)
 						d3.select("#Palau2").classed('hidden', true)
 						d3.select(".g-pstyle5").classed('hidden', true)
-						d3.select(".g-pstyle30").classed('hidden', true)
+						d3.select(".g-pstyle30").classed('hidden', false)
 						d3.select("#Marshall2").classed('hidden', false)
 						d3.select("#Marshall3").classed('hidden', false)
-						d3.select(".g-pstyle40").classed('hidden', true)
+						d3.select(".g-pstyle40").classed('hidden', false)
 						d3.select("#Nauru2").classed('hidden', false)
 						d3.select("#Nauru3").classed('hidden', true)
 						d3.select(".g-pstyle80").classed('hidden', true)
@@ -983,6 +1032,9 @@ body.scrollytelling-body .scrollytelling-slide video {
 						d3.select("#Solomon1").classed('hidden', true)
 						d3.select("#Kiribati1").classed('hidden', true)
 						d3.select("#Palau1").classed('hidden', true)
+						d3.select(".g-pstyle30b").classed('hidden', true)
+						d3.select(".g-pstyle40b").classed('hidden', true)
+						d3.select(".g-pstyle80b").classed('hidden', false)
 					}
 					)
 
@@ -1003,6 +1055,9 @@ body.scrollytelling-body .scrollytelling-slide video {
 						d3.select("#Solomon1").classed('hidden', false)
 						d3.select("#Kiribati1").classed('hidden', true)
 						d3.select("#Palau1").classed('hidden', true)
+						d3.select(".g-pstyle30b").classed('hidden', false)
+						d3.select(".g-pstyle40b").classed('hidden', false)
+						d3.select(".g-pstyle80b").classed('hidden', false)
 						}
 						)
 
@@ -1023,6 +1078,9 @@ body.scrollytelling-body .scrollytelling-slide video {
 						d3.select("#Solomon1").classed('hidden', false)
 						d3.select("#Kiribati1").classed('hidden', false)
 						d3.select("#Palau1").classed('hidden', true)
+						d3.select(".g-pstyle30b").classed('hidden', false)
+						d3.select(".g-pstyle40b").classed('hidden', false)
+						d3.select(".g-pstyle80b").classed('hidden', false)
 						}
 						)
 
